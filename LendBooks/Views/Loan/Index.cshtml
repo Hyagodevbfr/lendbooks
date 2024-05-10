@@ -1,1 +1,27 @@
-﻿<p>Olá, teste</p>
+﻿@model IEnumerable<LoansModel>
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Recebedor</th>
+            <th scope="col">Fornecedor</th>
+            <th scope="col">Livro emprestado</th>
+            <th scope="col">Ultima atualização</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach(var loan in Model)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@loan.Reciver</td>
+                    <td>@loan.Supplier</td>
+                    <td>@loan.BorrowedBook</td>
+                    <td>@loan.LastUpdate</td>
+                </tr>   
+            }
+        }
+         
+    </tbody>
+</table>
