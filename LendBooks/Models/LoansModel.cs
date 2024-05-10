@@ -6,5 +6,5 @@ public class LoansModel
     public string Reciver { get; set; } = null!;
     public string Supplier { get; set; } = null!;
     public string BorrowedBook { get; set; } = null!;
-    public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+    public DateTime LastUpdate { get; set; } = DateTime.UtcNow;
 }
