@@ -1,0 +1,38 @@
+﻿@model LoansModel
+@{
+    ViewData["title"] = "Editar Empréstimo";
+}
+
+<div class="container bg-dark p-5 rounded-5">
+
+    <div class="mb-5 text-center">
+        <h1 class="text-light">Edição de Empréstimos</h1>
+    </div>
+
+    <form method="post" asp-controller="Loan" asp-action="Edit">
+        <input type="hidden" asp-for="Id" />
+        <div class="mb-3">
+            <label for="Reciver" class="form-label text-light">Recebedor:</label>
+            <input type="text" asp-for="Reciver" class="form-control" id="Reciver" placeholder="Quem está recebendo">
+            <span asp-validation-for="Reciver" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="Supplier" class="form-label text-light">Fornecedor:</label>
+            <input type="text" asp-for="Supplier" class="form-control" id="Supplier" placeholder="Quem está emprestando">
+            <span asp-validation-for="Supplier" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="BorrowedBook" class="form-label text-light">Livro emprestado:</label>
+            <input type="text" asp-for="BorrowedBook" class="form-control" id="BorrowedBook" placeholder="Livro a ser emprestado" />
+            <span asp-validation-for="BorrowedBook" class="text-danger"></span>
+        </div>
+
+        <div class="d-flex gap-5 mt-5">
+            <button type="submit" class="btn btn-success w-50">Editar</button>
+
+            <a class="btn btn-primary w-50" asp-controller="Loan" asp-action="index">Voltar</a>
+        </div>
+    </form>
+</div>
