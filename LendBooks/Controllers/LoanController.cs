@@ -29,7 +29,7 @@ public class LoanController: Controller
         {
             _dbContext.Loans?.Add(loan);
             _dbContext.SaveChanges( );
-
+            TempData["SuccessMessage"] = "Cadastro realizado com sucesso";
             return RedirectToAction("Index");
         }
         return View();
@@ -55,6 +55,7 @@ public class LoanController: Controller
         {
             _dbContext.Loans!.Update(loan);
             _dbContext.SaveChanges( );
+            TempData["SuccessMessage"] = "Edição realizada com sucesso";
             return RedirectToAction("Index");
         }
         return View(loan);
@@ -78,6 +79,7 @@ public class LoanController: Controller
     {
         _dbContext.Loans!.Remove(loan);
         _dbContext.SaveChanges( );
+        TempData["SuccessMessage"] = "Deleção realizada com sucesso";
         return RedirectToAction("Index");     
     }
 

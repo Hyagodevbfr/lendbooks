@@ -14,5 +14,5 @@ public class LoansModel
 
     [Required(ErrorMessage = "Digite o nome do livro emprestado!")]
     public string? BorrowedBook { get; set; }
-    public DateTime LastUpdate { get; set; } = DateTime.UtcNow;
+    public DateTime LastUpdate { get; set; } = DateTime.UtcNow.AddHours(-3);
 }
