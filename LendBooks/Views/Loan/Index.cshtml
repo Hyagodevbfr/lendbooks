@@ -7,15 +7,20 @@
 
        <div class="d-flex justify-content-between text-center align-items-center mb-5">
            <h1>Empréstimos</h1>
-       @if(TempData["SuccessMessage"] != null)
-       {
-           <div class="alert alert-success text-light role="alert" >
-               @TempData["SuccessMessage"]
+           <div>
+            <a class="btn btn-success mx-2" asp-controller="Loan" asp-action="Export"><i class="bi bi-journal-check mx-2"></i>Exportar</a>
+            <a class="btn btn-success mx-2" asp-controller="Loan" asp-action="Register"><i class="bi bi-journal-check mx-2"></i>Cadastrar novo empréstimo</a>
            </div>
-       }
-        <a class="btn btn-success mx-2" asp-controller="Loan" asp-action="Register"><i class="bi bi-journal-check mx-2"></i>Cadastrar novo empréstimo</a>
 
        </div>
+
+        @if(TempData["SuccessMessage"] != null)
+        {
+           <div id="container-alert" class="alert alert-success text-black" role="alert" >
+               @TempData["SuccessMessage"]
+           </div> 
+        }
+
 
 
     <table id="Loans" class="table table-dark table-hover text-light-emphasis">

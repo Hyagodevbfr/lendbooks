@@ -1,7 +1,8 @@
-﻿using LendBooks.Infra.Data;
+﻿using ClosedXML.Excel;
+using LendBooks.Infra.Data;
 using LendBooks.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Data;
 
 namespace LendBooks.Controllers;
 public class LoanController: Controller
@@ -83,4 +84,42 @@ public class LoanController: Controller
         return RedirectToAction("Index");     
     }
 
+    [HttpGet]
+    public IActionResult Export() 
+    {
+
+        var data = GetData( );
+
+        using(XLWorkbook workBook = new())
+        {
+            workBook.AddWorksheet(data, "Dados Empréstimos");
+            using(MemoryStream memoryStream = new())
+            {
+                workBook.SaveAs( memoryStream);
+                return File(memoryStream.ToArray( ), "application/vnd.openxmlformats-officedocument.spredsheetml.sheet","Emprestimo.xls");
+            } 
+        } 
+    }
+
+    private DataTable GetData()
+    {
+        DataTable data = new();
+
+        data.TableName = "Loan Data";
+        data.Columns.Add("Recebedor", typeof(string));
+        data.Columns.Add("Fornecedor",typeof(string));
+        data.Columns.Add("Livro",typeof(string));
+        data.Columns.Add("Data empréstimo",typeof(DateTime));
+
+        var dataLoans = _dbContext.Loans!.ToList( );
+        if(dataLoans.Count > 0)
+        {
+            dataLoans.ForEach(Loans =>
+            {
+                data.Rows.Add(Loans.Reciver,Loans.Supplier,Loans.BorrowedBook,Loans.LastUpdate);
+            });
+        }
+
+        return data;
+    }
 }
